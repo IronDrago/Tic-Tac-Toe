@@ -2,9 +2,11 @@
 import random
 
 
-field = [['.','.','.'],
-         ['.','.','.'],
-         ['.','.','.']]
+def createField():
+    field = [['.','.','.'],
+             ['.','.','.'],
+             ['.','.','.']]
+    return field
 
 
 def drawField(board):
@@ -18,6 +20,7 @@ def playerMove(token, board):
         print('Ходит' , token)
         line = input('Введите строку: ')
         column = input('Введите столбец; ')
+        
         try:
             line = int(line)
             column = int(column)
@@ -89,8 +92,7 @@ def main(board):
 while True:
     isPlay = input('Чтобы начать игру нажмите Enter')
     if not isPlay:
+        field = createField()
         main(field)
     else:
         break
-    for x in field:
-        x[0] = '.'; x[1] = '.'; x[2] = '.'
