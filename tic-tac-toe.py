@@ -90,8 +90,8 @@ def main(board):
             sym = 'O'
 
 while True:
-    isPlay = input('Чтобы начать игру нажмите Enter')
-    if not isPlay:
+    str = input('Чтобы начать игру нажмите Enter')
+    if not str:
         field = createField()
         main(field)
     else:
