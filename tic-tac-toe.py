@@ -1,23 +1,21 @@
-
 import random
 
 
-def createField():
-    field = [['.','.','.'],
-             ['.','.','.'],
-             ['.','.','.']]
-    return field
+def create_field():
+    board = [['.', '.', '.'],
+             ['.', '.', '.'],
+             ['.', '.', '.']]
+    return board
 
 
-def drawField(board):
+def draw_field(board):
     for x in board:
         print(x[0], x[1], x[2])
 
 
-def playerMove(token, board):
-    correct = False
-    while not correct:
-        print('Ходит' , token)
+def player_move(token, board):
+    while True:
+        print('Ходит ', token)
         line = input('Введите строку: ')
         column = input('Введите столбец; ')
         
@@ -35,13 +33,12 @@ def playerMove(token, board):
         if board[line - 1][column - 1] == '.':
             board[line - 1][column - 1] = token
             return board
-            correct = true
         else:
             print('Эта клетка уже занята')
             continue
 
 
-def isWin(board):
+def is_win(board):
     win = [[board[0][0], board[0][1], board[0][2]],
            [board[1][0], board[1][1], board[1][2]],
            [board[2][0], board[2][1], board[2][2]],
@@ -52,8 +49,8 @@ def isWin(board):
            [board[0][2], board[1][1], board[2][0]]]
     
     for each in win:
-       if (each[0] != '.') and each[0] == each[1] == each[2]:
-           return each[0]
+        if (each[0] != '.') and (each[0] == each[1] == each[2]):
+            return each[0]
     return False
 
         
@@ -64,20 +61,18 @@ def main(board):
     else:
         sym = 'X'
 
-    drawField(board)
+    draw_field(board)
     count = 0
 
-    win = False
-    while not win:
-        playerMove(sym, board)
-        drawField(board)
+    while True:
+        player_move(sym, board)
+        draw_field(board)
         count += 1
 
         if count > 4:
-            victory = isWin(board)
+            victory = is_win(board)
             if victory:
                 print(victory + ' победил!')
-                win = True
                 break
         
         if count == 9:
@@ -90,9 +85,10 @@ def main(board):
             sym = 'O'
 
 while True:
-    str = input('Чтобы начать игру нажмите Enter')
-    if not str:
-        field = createField()
+    string = input('Чтобы начать игру нажмите Enter')
+
+    if not string:
+        field = create_field()
         main(field)
     else:
         break
